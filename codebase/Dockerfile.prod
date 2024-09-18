@@ -1,7 +1,7 @@
 # We will use this Dockerfile for Cloud and Kubernetes Environment
 # Dependency Resolution Stage:
 FROM python:3.12 as requirements-stage
-LABEL maintainer="ameen-alam"
+LABEL maintainer="moosa-afzal"
 WORKDIR /tmp
 RUN pip install poetry
 COPY ./codebase/pyproject.toml ./poetry.lock* /tmp/
@@ -13,7 +13,7 @@ COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./codebase/app /code/app
 # We will comment COPY .env /code/ later 
-COPY ./codebase/.env /code/
+COPY ./codebase/.env /code
 # Set up a non-root user for better security
 RUN useradd --create-home --home-dir /home/appuser appuser \
     && chown -R appuser:appuser /code
