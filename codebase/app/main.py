@@ -14,7 +14,7 @@ class Todo(SQLModel, table=True):
 
 # only needed for psycopg 3 - replace postgresql
 # with postgresql+psycopg in settings.DATABASE_URL
-connection_string = str(settings.DATABASE_URL).replace(
+connection_string = str("postgresql://moosaafzal2000:QRvyY9HPOna0@ep-red-silence-40349279-pooler.us-east-2.aws.neon.tech/fastapi-sqlmodel?sslmode=require").replace(
     "postgresql", "postgresql+psycopg"
 )
 
