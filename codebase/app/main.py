@@ -1,7 +1,7 @@
 # main.py
 from contextlib import asynccontextmanager
 from typing import Union, Optional, Annotated
-# from app import settings
+from app.settings import DATABASE_URL
 from sqlmodel import Field, Session, SQLModel, create_engine, select, Sequence
 from fastapi import FastAPI, Depends
 from typing import AsyncGenerator
@@ -14,7 +14,7 @@ class Todo(SQLModel, table=True):
 
 # only needed for psycopg 3 - replace postgresql
 # with postgresql+psycopg in settings.DATABASE_URL
-connection_string = str("postgresql://moosaafzal2000:QRvyY9HPOna0@ep-red-silence-40349279-pooler.us-east-2.aws.neon.tech/fastapi-sqlmodel?sslmode=require").replace(
+connection_string = str(DATABASE_URL).replace(
     "postgresql", "postgresql+psycopg"
 )
 
